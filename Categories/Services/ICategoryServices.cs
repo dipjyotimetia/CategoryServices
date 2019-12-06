@@ -1,12 +1,13 @@
 ﻿using Categories.Models;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Categories.Services
 {
     public interface ICategoryServices
     {
-        CategoryItems AddCategories(CategoryItems category);
+        Task<CategoryItems> AddCategories(CategoryItems category);
 
-        Dictionary<string, CategoryItems> GetCategories();
+        Task<List<CategoryItems>> GetCategories();
     }
 }

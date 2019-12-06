@@ -1,31 +1,30 @@
 ﻿using Categories.Models;
-using System;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Categories.Services
 {
     public class CategoryServices : ICategoryServices
     {
-        private readonly Dictionary<string, CategoryItems> _categoryItems;
+        private readonly CategoryContext _context;
 
-        public CategoryServices()
+        public CategoryServices(CategoryContext context)
         {
-            _categoryItems = new Dictionary<string, CategoryItems>();
+            _context = context;
         }
 
-        public CategoryItems AddCategories(CategoryItems category)
+        public async Task<CategoryItems> AddCategories(CategoryItems category)
         {
-            if (category == null)
-            {
-                throw new Exception("Enter all the categories");
-            }
-            _categoryItems.Add(category.CategoryName, category);
+            _context.Add(category);
+            await _context.SaveChangesAsync();
             return category;
         }
 
-        public Dictionary<string, CategoryItems> GetCategories()
+        public async Task<List<CategoryItems>> GetCategories()
         {
-            return _categoryItems;
+            return await _context.CategoryItems.AsNoTracking().OrderBy(e => e.CategoryId).ToListAsync();
         }
     }
 }

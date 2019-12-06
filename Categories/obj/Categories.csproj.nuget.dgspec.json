@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\ccviews\\VS\\Categories\\Categories\\Categories.csproj": {}
+    "C:\\ccviews\\CategoryServices\\Categories\\Categories.csproj": {}
   },
   "projects": {
-    "C:\\ccviews\\VS\\Categories\\Categories\\Categories.csproj": {
+    "C:\\ccviews\\CategoryServices\\Categories\\Categories.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\ccviews\\VS\\Categories\\Categories\\Categories.csproj",
+        "projectUniqueName": "C:\\ccviews\\CategoryServices\\Categories\\Categories.csproj",
         "projectName": "Categories",
-        "projectPath": "C:\\ccviews\\VS\\Categories\\Categories\\Categories.csproj",
-        "packagesPath": "C:\\Users\\dipjyoti\\.nuget\\packages\\",
-        "outputPath": "C:\\ccviews\\VS\\Categories\\Categories\\obj\\",
+        "projectPath": "C:\\ccviews\\CategoryServices\\Categories\\Categories.csproj",
+        "packagesPath": "C:\\Users\\dipjyoti.metia\\.nuget\\packages\\",
+        "outputPath": "C:\\ccviews\\CategoryServices\\Categories\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\dipjyoti\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\dipjyoti.metia\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -25,6 +25,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "http://wgtawsnuget01.wgtech.local/nuget/nuget/": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -67,10 +68,6 @@
               "version": "[2.1.1, )",
               "autoReferenced": true
             },
-            "Microsoft.EntityFrameworkCore": {
-              "target": "Package",
-              "version": "[3.1.0, )"
-            },
             "Microsoft.NETCore.App": {
               "suppressParent": "All",
               "target": "Package",
@@ -81,9 +78,33 @@
               "target": "Package",
               "version": "[12.0.3, )"
             },
+            "Npgsql": {
+              "target": "Package",
+              "version": "[3.2.7, )"
+            },
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[2.0.1, )"
+            },
             "Serilog": {
               "target": "Package",
               "version": "[2.9.0, )"
+            },
+            "Serilog.AspNetCore": {
+              "target": "Package",
+              "version": "[2.1.1, )"
+            },
+            "Serilog.Extensions.Logging": {
+              "target": "Package",
+              "version": "[2.0.2, )"
+            },
+            "Serilog.Settings.Configuration": {
+              "target": "Package",
+              "version": "[2.6.0, )"
+            },
+            "Serilog.Sinks.RollingFile": {
+              "target": "Package",
+              "version": "[3.3.0, )"
             }
           },
           "imports": [

@@ -3,6 +3,7 @@ using Categories.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Categories.Controllers
 {
@@ -10,44 +11,46 @@ namespace Categories.Controllers
     [ApiController]
     public class CategoryController : Controller
     {
-        ILoggerFactory _loggerFactory;
+        ILogger _logger;
         private readonly ICategoryServices _services;
 
-        public CategoryController(ICategoryServices services,ILoggerFactory loggerFactory)
+        public CategoryController(ICategoryServices services,ILogger<CategoryController> logger)
         {
             _services = services;
-            _loggerFactory = loggerFactory;
+            _logger = logger;
         }
 
         // POST api/values
         [HttpPost]
         [Route("AddCategories")]
-        public ActionResult<CategoryItems> PostCategories(CategoryItems category)
+        public async Task<IActionResult> PostCategories([FromBody]CategoryItems category)
         {
-            var logger = _loggerFactory.CreateLogger("PostCategory");
+            _logger.LogInformation($"CategoryController ->");
 
-            var categories = _services.AddCategories(category);
+            var categories = await _services.AddCategories(category);
 
             if (categories == null)
             {
-                logger.LogInformation("Category Not Found");
+                _logger.LogInformation("Category Not Found");
                 return NotFound();
             }
-            return categories;
+            return Ok(categories);
         }
 
-        // GET api/values/5
+       
         [HttpGet]
         [Route("GetCategories")]
-        public ActionResult<Dictionary<string, CategoryItems>> GetCategoryItems()
+        public async Task<IActionResult> GetCategoryItems()
         {
-            var categories = _services.GetCategories();
+            var category = await _services.GetCategories();
 
-            if (categories.Count == 0)
+            if (category.Count == 0)
             {
+                _logger.LogInformation("Category Not Found");
                 return NotFound();
             }
-            return categories;
+
+            return Ok(category);
         }
     }
 }
