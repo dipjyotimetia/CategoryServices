@@ -22,9 +22,27 @@ namespace Categories.Services
             return category;
         }
 
+        public async Task<CategoryItems> DeleteCategories(CategoryItems category)
+        {
+            _context.Remove(category);
+            await _context.SaveChangesAsync();
+            return category;
+
+        }
+
         public async Task<List<CategoryItems>> GetCategories()
         {
-            return await _context.CategoryItems.AsNoTracking().OrderBy(e => e.CategoryId).ToListAsync();
+            return await _context.CategoryItems
+                .AsNoTracking()
+                .OrderBy(e => e.CategoryId)
+                .ToListAsync();
+        }
+
+        public async Task<CategoryItems> UpdateCategories(CategoryItems category)
+        {
+            _context.Update(category);
+            await _context.SaveChangesAsync();
+            return category;
         }
     }
 }

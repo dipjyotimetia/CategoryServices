@@ -14,7 +14,7 @@ namespace Categories.Controllers
         ILogger _logger;
         private readonly ICategoryServices _services;
 
-        public CategoryController(ICategoryServices services,ILogger<CategoryController> logger)
+        public CategoryController(ICategoryServices services, ILogger<CategoryController> logger)
         {
             _services = services;
             _logger = logger;
@@ -23,7 +23,7 @@ namespace Categories.Controllers
         // POST api/values
         [HttpPost]
         [Route("AddCategories")]
-        public async Task<IActionResult> PostCategories([FromBody]CategoryItems category)
+        public async Task<IActionResult> AddCategories([FromBody]CategoryItems category)
         {
             _logger.LogInformation($"CategoryController ->");
 
@@ -37,7 +37,23 @@ namespace Categories.Controllers
             return Ok(categories);
         }
 
-       
+        // POST api/values
+        [HttpPut]
+        [Route("UpdateCategories")]
+        public async Task<IActionResult> UpdateCategories([FromBody]CategoryItems category)
+        {
+            _logger.LogInformation($"CategoryController ->");
+
+            var categories = await _services.UpdateCategories(category);
+
+            if (categories == null)
+            {
+                _logger.LogInformation("Category Not Updated");
+                return NotFound();
+            }
+            return Ok(categories);
+        }
+
         [HttpGet]
         [Route("GetCategories")]
         public async Task<IActionResult> GetCategoryItems()
@@ -51,6 +67,14 @@ namespace Categories.Controllers
             }
 
             return Ok(category);
+        }
+
+        [HttpDelete]
+        [Route("DeleteCategories")]
+        public async Task<IActionResult> DeleteCategoryItems([FromBody]CategoryItems category)
+        {
+            var categories = await _services.DeleteCategories(category);
+            return Ok(categories);
         }
     }
 }

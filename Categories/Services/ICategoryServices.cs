@@ -8,6 +8,10 @@ namespace Categories.Services
     {
         Task<CategoryItems> AddCategories(CategoryItems category);
 
+        Task<CategoryItems> UpdateCategories(CategoryItems category);
+
         Task<List<CategoryItems>> GetCategories();
+
+        Task<CategoryItems> DeleteCategories(CategoryItems category);
     }
 }
